@@ -15,18 +15,20 @@ public class Lebron {
 
         String userInput = myObj.nextLine();
         while (!userInput.equals("bye")) {
-
+            String[] splitUserInput = userInput.split( " ", 2);
             printHorizontalLine();
             if (userInput.equals("list")) {
                 displayList(myList);
-            } else if (userInput.split(" ")[0].equals("mark")) {
-                markTask(userInput.split(" ")[1], myList, true);
-            }  else if (userInput.split(" ")[0].equals("unmark")) {
-                markTask(userInput.split(" ")[1], myList, false);
-            }
-            else {
-                myList.add(new Task(userInput));
-                System.out.println("added: " + userInput);
+            } else if (splitUserInput[0].equals("mark")) {
+                markTask(splitUserInput[1], myList, true);
+            }  else if (splitUserInput[0].equals("unmark")) {
+                markTask(splitUserInput[1], myList, false);
+            } else if (splitUserInput[0].equals("todo")) {
+                addTodo(splitUserInput[1], myList);
+            } else if (splitUserInput[0].equals("deadline")) {
+                addDeadline(splitUserInput[1], myList);
+            } else if (splitUserInput[0].equals("event")){
+                addEvent(splitUserInput[1], myList);
             }
             printHorizontalLine();
             userInput = myObj.nextLine();
@@ -65,7 +67,8 @@ public class Lebron {
         try {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
-                System.out.println("Task " + idx + "does not exist!");
+                int tmpnum = idx++;
+                System.out.println("Task " + tmpnum + " does not exist!");
             } else if (toComplete){
                 Task curTask = ls.get(idx);
                 curTask.markAsCompleted();
@@ -80,5 +83,45 @@ public class Lebron {
         } catch (NumberFormatException e) {
             System.out.println("Please input a valid integer after mark ");
         }
+    }
+
+    public static void addTodo(String s, List<Task> myList) {
+        System.out.println("No Problem G, I got you");
+        Task newTask = new ToDoTask(s);
+        myList.add(newTask);
+        System.out.println(newTask);
+        System.out.println("Now you have " + myList.size() + " tasks in the list");
+    }
+
+    public static void addDeadline(String s, List<Task> myList) {
+        System.out.println("Looks like you want to add a Task with Deadline");
+        int idx = s.indexOf("/by");
+        if (idx <= 0) {
+            System.out.println("Deadline should have a format of deadline 'name' /by 'time'");
+            return;
+        }
+        String name = s.substring(0,idx).trim();
+        String by = s.substring(3 + idx).trim();
+        Task newTask = new DeadlineTask(name, by);
+        myList.add(newTask);
+        System.out.println(newTask);
+        System.out.println("Done bro");
+    }
+
+    public static void addEvent(String s, List<Task> myList) {
+        System.out.println("Hmm an event interesting");
+        int idx0 = s.indexOf("/from");
+        int idx1 = s.indexOf("/to");
+        if (idx0 <= 0 || idx1 <= 0) {
+            System.out.println("Event should have a format of event 'name' /from 'start' /to 'finish'");
+            return;
+        }
+        String name = s.substring(0,idx0).trim();
+        String from = s.substring(5+idx0,idx1).trim();
+        String to = s.substring(idx1+3).trim();
+        Task newTask = new EventTask(name,from,to);
+        myList.add(newTask);
+        System.out.println(newTask);
+        System.out.println("Added the task for you");
     }
 }
