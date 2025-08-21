@@ -1,0 +1,14 @@
+deadline bio homework /by 2359
+event game workshop /from tdy /to tmr
+todo meet family
+mark 1
+list
+mark 2
+list
+unmark 1
+list
+mark 3
+list
+deadline do homework
+event what the helly /from deez
+bye
