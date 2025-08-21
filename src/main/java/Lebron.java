@@ -29,6 +29,8 @@ public class Lebron {
                 addDeadline(splitUserInput[1], myList);
             } else if (splitUserInput[0].equals("event")){
                 addEvent(splitUserInput[1], myList);
+            } else {
+                System.out.println("What the helly do you mean? Please try again");
             }
             printHorizontalLine();
             userInput = myObj.nextLine();
