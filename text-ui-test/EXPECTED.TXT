@@ -7,7 +7,7 @@ Done bro
 --------------------------------------------------
 --------------------------------------------------
 Hmm an event interesting
-[D][ ] game workshop (from: tdy to: tmr)
+[E][ ] game workshop (from: tdy to: tmr)
 Added the task for you
 --------------------------------------------------
 --------------------------------------------------
@@ -22,17 +22,17 @@ I've just marked this as done my G
 --------------------------------------------------
 Here are the tasks in your list:
 1.[D][X] bio homework (by: 2359)
-2.[D][ ] game workshop (from: tdy to: tmr)
+2.[E][ ] game workshop (from: tdy to: tmr)
 3.[T][ ] meet family
 --------------------------------------------------
 --------------------------------------------------
 I've just marked this as done my G
-[D][X] game workshop (from: tdy to: tmr)
+[E][X] game workshop (from: tdy to: tmr)
 --------------------------------------------------
 --------------------------------------------------
 Here are the tasks in your list:
 1.[D][X] bio homework (by: 2359)
-2.[D][X] game workshop (from: tdy to: tmr)
+2.[E][X] game workshop (from: tdy to: tmr)
 3.[T][ ] meet family
 --------------------------------------------------
 --------------------------------------------------
@@ -42,7 +42,7 @@ This task is officially undone
 --------------------------------------------------
 Here are the tasks in your list:
 1.[D][ ] bio homework (by: 2359)
-2.[D][X] game workshop (from: tdy to: tmr)
+2.[E][X] game workshop (from: tdy to: tmr)
 3.[T][ ] meet family
 --------------------------------------------------
 --------------------------------------------------
@@ -52,7 +52,7 @@ I've just marked this as done my G
 --------------------------------------------------
 Here are the tasks in your list:
 1.[D][ ] bio homework (by: 2359)
-2.[D][X] game workshop (from: tdy to: tmr)
+2.[E][X] game workshop (from: tdy to: tmr)
 3.[T][X] meet family
 --------------------------------------------------
 --------------------------------------------------
@@ -62,6 +62,27 @@ Deadline should have a format of deadline 'name' /by 'time'
 --------------------------------------------------
 Hmm an event interesting
 Event should have a format of event 'name' /from 'start' /to 'finish'
+--------------------------------------------------
+--------------------------------------------------
+What the helly do you mean? Please try again
+--------------------------------------------------
+--------------------------------------------------
+I've Removed this task from the list
+[D][ ] bio homework (by: 2359)
+Now you have 2 items left in the list!
+--------------------------------------------------
+--------------------------------------------------
+Here are the tasks in your list:
+1.[E][X] game workshop (from: tdy to: tmr)
+2.[T][X] meet family
+--------------------------------------------------
+--------------------------------------------------
+Task 4 does not exist!
+--------------------------------------------------
+--------------------------------------------------
+Here are the tasks in your list:
+1.[E][X] game workshop (from: tdy to: tmr)
+2.[T][X] meet family
 --------------------------------------------------
 --------------------------------------------------
 Im gonna bounce. See ya fam!

@@ -12,4 +12,8 @@ list
 deadline do homework
 event what the helly /from deez
 bruh yeet smelly
+delete 1
+list
+delete 5
+list
 bye

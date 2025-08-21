@@ -15,21 +15,23 @@ public class Lebron {
 
         String userInput = myObj.nextLine();
         while (!userInput.equals("bye")) {
-            String[] splitUserInput = userInput.split( " ", 2);
+            String[] splitUserInput = userInput.split(" ", 2);
             printHorizontalLine();
             if (userInput.equals("list")) {
                 displayList(myList);
             } else if (splitUserInput[0].equals("mark")) {
                 markTask(splitUserInput[1], myList, true);
-            }  else if (splitUserInput[0].equals("unmark")) {
+            } else if (splitUserInput[0].equals("unmark")) {
                 markTask(splitUserInput[1], myList, false);
             } else if (splitUserInput[0].equals("todo")) {
                 addTodo(splitUserInput[1], myList);
             } else if (splitUserInput[0].equals("deadline")) {
                 addDeadline(splitUserInput[1], myList);
-            } else if (splitUserInput[0].equals("event")){
+            } else if (splitUserInput[0].equals("event")) {
                 addEvent(splitUserInput[1], myList);
-            } else {
+            } else if (splitUserInput[0].equals("delete")) {
+                removeTask(splitUserInput[1], myList);
+            }else {
                 System.out.println("What the helly do you mean? Please try again");
             }
             printHorizontalLine();
@@ -62,6 +64,22 @@ public class Lebron {
                 Task curTask = ls.get(i-1);
                 System.out.println(i + "." + curTask.toString());
             }
+        }
+    }
+    public static void removeTask(String helly, List<Task> ls) {
+        try {
+            int idx = Integer.parseInt(helly) - 1;
+            if (ls.size() <= idx || idx < 0) {
+                int tmpnum = idx++;
+                System.out.println("Task " + tmpnum + " does not exist!");
+            } else {
+                Task curTask = ls.remove(idx);
+                System.out.println("I've Removed this task from the list ");
+                System.out.println(curTask);
+                System.out.println("Now you have " + ls.size() + " items left in the list!");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please input a valid integer after delete ");
         }
     }
 
