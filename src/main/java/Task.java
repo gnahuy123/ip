@@ -1,4 +1,4 @@
-public class Task {
+abstract public class Task {
     protected String name;
     protected boolean isCompleted;
 
@@ -20,6 +20,9 @@ public class Task {
         this.isCompleted = false;
     }
 
+    public String toCSV() {
+        return name + "," + (isCompleted ? "true" : "false");
+    }
     @Override
     public String toString() {
         char symbol = this.isCompleted ? 'X' : ' ';
