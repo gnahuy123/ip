@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 abstract public class Task {
     protected String name;
     protected boolean isCompleted;
@@ -10,6 +12,10 @@ abstract public class Task {
     public Task(String name) {
         this.name = name;
         this.isCompleted = false;
+    }
+
+    public LocalDate dueBy() {
+        return null;
     }
 
     public void markAsCompleted() {

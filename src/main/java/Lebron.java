@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,6 +49,10 @@ public class Lebron {
             public void execute(String helly, List<Task> ls) {
                 removeTask(helly, ls);
             }
+        },
+
+        DUE("due") {
+            public void execute(String helly, List<Task> ls) { getDueTasks(helly, ls ); }
         },
 
         UNKNOWN("unknown") {
@@ -153,11 +159,18 @@ public class Lebron {
             case "Todo" -> res = new ToDoTask(cells[1], isCompleted);
             case "Deadline" -> res =
                     cells.length == 4
-                        ? new DeadlineTask(cells[1], isCompleted, cells[3])
+                        ? new DeadlineTask(
+                                cells[1],
+                                isCompleted,
+                                LocalDate.parse(cells[3]))
                         : null;
             case "Event" -> res =
                     cells.length == 5
-                        ? new EventTask(cells[1], isCompleted, cells[3], cells[4])
+                        ? new EventTask(
+                                cells[1],
+                                isCompleted,
+                                LocalDate.parse(cells[3]),
+                                LocalDate.parse(cells[4]))
                         : null;
             default -> res = null;
         }
@@ -175,6 +188,34 @@ public class Lebron {
         System.out.println();
     }
 
+    public static void getDueTasks(String helly, List<Task> ls) {
+        try {
+            LocalDate by;
+            if (helly.isEmpty()) {
+                by = LocalDate.now();
+            } else {
+                by = LocalDate.parse(helly);
+            }
+            System.out.println("The following are tasks that are due by " + by);
+            List<Task> dueTasks = new ArrayList<>();
+
+            for (Task t: ls) {
+                LocalDate dueBy = t.dueBy();
+                if (dueBy != null && dueBy.isBefore(by)) {
+                    dueTasks.add(t);
+                }
+            }
+
+            dueTasks.sort((x, y) -> x.dueBy().isBefore(y.dueBy()) ? -1 : 1);
+
+            for (Task t: dueTasks) {
+                System.out.println(t);
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Please enter a value date YYYY-MM-DD");
+        }
+    }
     public static void displayList(String helly, List<Task> ls) {
         if (ls.isEmpty()) {
             System.out.println("List is Empty");
@@ -190,7 +231,7 @@ public class Lebron {
         try {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
-                int tmpnum = idx++;
+                int tmpnum = idx + 1;
                 System.out.println("Task " + tmpnum + " does not exist!");
             } else {
                 Task curTask = ls.remove(idx);
@@ -249,15 +290,19 @@ public class Lebron {
         System.out.println("Looks like you want to add a Task with Deadline");
         int idx = s.indexOf("/by");
         if (idx <= 0) {
-            System.out.println("Deadline should have a format of deadline 'name' /by 'time'");
+            System.out.println("Deadline should have a format of deadline 'name' /by YYYY-MM-DD");
             return;
         }
         String name = s.substring(0,idx).trim();
-        String by = s.substring(3 + idx).trim();
-        Task newTask = new DeadlineTask(name, by);
-        myList.add(newTask);
-        System.out.println(newTask);
-        System.out.println("Done bro");
+        try {
+            LocalDate by = LocalDate.parse(s.substring(3 + idx).trim());
+            Task newTask = new DeadlineTask(name, by);
+            myList.add(newTask);
+            System.out.println(newTask);
+            System.out.println("Done bro");
+        } catch (DateTimeParseException e) {
+            System.out.println("Deadline should have a format of deadline 'name' /by YYYY-MM-DD");
+        }
     }
 
     public static void addEvent(String s, List<Task> myList) {
@@ -265,15 +310,20 @@ public class Lebron {
         int idx0 = s.indexOf("/from");
         int idx1 = s.indexOf("/to");
         if (idx0 <= 0 || idx1 <= 0) {
-            System.out.println("Event should have a format of event 'name' /from 'start' /to 'finish'");
+            System.out.println("Event should have a format of event 'name' /from YYYY-MM-DD /to YYYY-MM-DD");
             return;
         }
-        String name = s.substring(0,idx0).trim();
-        String from = s.substring(5+idx0,idx1).trim();
-        String to = s.substring(idx1+3).trim();
-        Task newTask = new EventTask(name,from,to);
-        myList.add(newTask);
-        System.out.println(newTask);
-        System.out.println("Added the task for you");
+        try {
+            String name = s.substring(0,idx0).trim();
+            LocalDate from = LocalDate.parse(s.substring(5+idx0,idx1).trim());
+            LocalDate to = LocalDate.parse(s.substring(idx1+3).trim());
+            Task newTask = new EventTask(name,from,to);
+            myList.add(newTask);
+            System.out.println(newTask);
+            System.out.println("Added the task for you");
+        } catch (DateTimeParseException e) {
+            System.out.println("Event should have a format of event 'name' /from YYYY-MM-DD /to YYYY-MM-DD");
+        }
+
     }
 }
