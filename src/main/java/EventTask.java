@@ -1,16 +1,18 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class EventTask extends Task {
 
+    protected LocalDate from;
+    protected LocalDate to;
 
-    protected String from;
-    protected String to;
-
-    public EventTask(String name, String from, String to) {
+    public EventTask(String name, LocalDate from, LocalDate to) {
         super(name);
         this.from = from;
         this.to = to;
     }
 
-    public EventTask(String name, boolean isCompleted, String from, String to) {
+    public EventTask(String name, boolean isCompleted, LocalDate from, LocalDate to) {
         super(name, isCompleted);
         this.from = from;
         this.to = to;
@@ -23,7 +25,7 @@ public class EventTask extends Task {
 
     @Override
     public String toCSV() {
-        return "Event," + super.toCSV() + "," + this.from + "," + this.to + "\n";
+        return "Event," + super.toCSV() + "," + this.from.toString() + "," + this.to.toString() + "\n";
     }
 
 }
