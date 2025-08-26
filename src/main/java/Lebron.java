@@ -51,6 +51,10 @@ public class Lebron {
             }
         },
 
+        DUE("due") {
+            public void execute(String helly, List<Task> ls) { getDueTasks(helly, ls ); }
+        },
+
         UNKNOWN("unknown") {
             public void execute(String helly, List<Task> ls) {
                 System.out.println("What the helly do you mean, please try again");
@@ -184,6 +188,34 @@ public class Lebron {
         System.out.println();
     }
 
+    public static void getDueTasks(String helly, List<Task> ls) {
+        try {
+            LocalDate by;
+            if (helly.isEmpty()) {
+                by = LocalDate.now();
+            } else {
+                by = LocalDate.parse(helly);
+            }
+            System.out.println("The following are tasks that are due by " + by);
+            List<Task> dueTasks = new ArrayList<>();
+
+            for (Task t: ls) {
+                LocalDate dueBy = t.dueBy();
+                if (dueBy != null && dueBy.isBefore(by)) {
+                    dueTasks.add(t);
+                }
+            }
+
+            dueTasks.sort((x, y) -> x.dueBy().isBefore(y.dueBy()) ? -1 : 1);
+
+            for (Task t: dueTasks) {
+                System.out.println(t);
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Please enter a value date YYYY-MM-DD");
+        }
+    }
     public static void displayList(String helly, List<Task> ls) {
         if (ls.isEmpty()) {
             System.out.println("List is Empty");

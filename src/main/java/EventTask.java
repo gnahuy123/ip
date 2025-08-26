@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class EventTask extends Task {
 
@@ -20,7 +21,15 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ')';
+        return "[E]" + super.toString() + " (from: " +
+                from.format(DateTimeFormatter.ofPattern("MMM d, uuuu")) +
+                " to: " +
+                to.format(DateTimeFormatter.ofPattern("MMM d, uuuu")) + ')';
+    }
+
+    @Override
+    public LocalDate dueBy() {
+        return from;
     }
 
     @Override
