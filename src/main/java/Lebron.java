@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -79,6 +82,8 @@ public class Lebron {
         String exitMsg = "Im gonna bounce. See ya fam!";
         List<Task> myList = new ArrayList<>();
 
+        loadTasksFromStorage(myList);
+
         //print welcome message
         System.out.println(welcomeMsg);
         printHorizontalLine();
@@ -99,7 +104,64 @@ public class Lebron {
 
         //print exit message
         System.out.println(exitMsg);
+        storeTasks(myList);
         printHorizontalLine();
+    }
+
+    public static void storeTasks(List<Task> ls) {
+        String fileName = "./data/userData.csv";
+        // Having fileWriter in the argument ensures i dont have to call file close if there is a error
+        try (FileWriter writer = new FileWriter(fileName, false)) {
+            for (Task t: ls) {
+                writer.write(t.toCSV());
+            }
+        } catch (IOException e) {
+            System.out.println("Data file does not exist");
+        }
+    }
+
+    public static void loadTasksFromStorage(List<Task> ls) {
+        String fileName = "./data/userData.csv";
+        try {
+            File f = new File(fileName);
+            boolean isNew = f.createNewFile();
+            if (!isNew) {
+                //ensure file only contains ASCII characters
+                Scanner scanner = new Scanner(f, java.nio.charset.StandardCharsets.UTF_8);
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    Task t = parseTask(line);
+                    if (t != null) {
+                        ls.add(t);
+                    } else {
+                        System.out.println("file corrupted");
+                    }
+                }
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Task parseTask(String s) {
+        //format name, isCompleted
+        String[] cells = s.split(",", -1);
+        Task res;
+        boolean isCompleted = Boolean.parseBoolean(cells[2]);
+        switch (cells[0]) {
+            case "Todo" -> res = new ToDoTask(cells[1], isCompleted);
+            case "Deadline" -> res =
+                    cells.length == 4
+                        ? new DeadlineTask(cells[1], isCompleted, cells[3])
+                        : null;
+            case "Event" -> res =
+                    cells.length == 5
+                        ? new EventTask(cells[1], isCompleted, cells[3], cells[4])
+                        : null;
+            default -> res = null;
+        }
+        return res;
     }
 
     public static void printHorizontalLine() {
