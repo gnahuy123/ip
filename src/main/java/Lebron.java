@@ -3,6 +3,76 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lebron {
+    enum Command {
+        LIST("list") {
+            public void execute(String helly, List<Task> ls) {
+               displayList(helly, ls);
+            }
+        },
+
+        MARK("mark") {
+            public void execute(String helly, List<Task> ls) {
+               markTask(helly, ls);
+            }
+        },
+
+        UNMARK("unmark") {
+            public void execute(String helly, List<Task> ls) {
+                unmarkTask(helly, ls);
+            }
+        },
+
+        TODO("todo") {
+            public void execute(String helly, List<Task> ls) {
+                addTodo(helly, ls);
+            }
+        },
+
+        DEADLINE("deadline") {
+            public void execute(String helly, List<Task> ls) {
+                addDeadline(helly, ls);
+            }
+        },
+
+        EVENT("event") {
+            public void execute(String helly, List<Task> ls) {
+                addEvent(helly, ls);
+            }
+        },
+
+        DELETE("delete") {
+            public void execute(String helly, List<Task> ls) {
+                removeTask(helly, ls);
+            }
+        },
+
+        UNKNOWN("unknown") {
+            public void execute(String helly, List<Task> ls) {
+                System.out.println("What the helly do you mean, please try again");
+            }
+        };
+        abstract public void execute(String helly, List<Task> myList);
+
+        private final String keyword;
+
+        Command(String keyword) {
+            this.keyword = keyword;
+        }
+
+        public boolean matches(String input) {
+            return keyword.equalsIgnoreCase(input);
+        }
+
+        public static Command fromString(String input) {
+            for (Command cmd: values()) {
+                if (cmd.matches(input)) {
+                    return cmd;
+                }
+            }
+            return Command.UNKNOWN;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         String welcomeMsg = "Wassup, I'm Lebron. What popping homie?";
@@ -16,24 +86,12 @@ public class Lebron {
         String userInput = myObj.nextLine();
         while (!userInput.equals("bye")) {
             String[] splitUserInput = userInput.split(" ", 2);
-            printHorizontalLine();
-            if (userInput.equals("list")) {
-                displayList(myList);
-            } else if (splitUserInput[0].equals("mark")) {
-                markTask(splitUserInput[1], myList, true);
-            } else if (splitUserInput[0].equals("unmark")) {
-                markTask(splitUserInput[1], myList, false);
-            } else if (splitUserInput[0].equals("todo")) {
-                addTodo(splitUserInput[1], myList);
-            } else if (splitUserInput[0].equals("deadline")) {
-                addDeadline(splitUserInput[1], myList);
-            } else if (splitUserInput[0].equals("event")) {
-                addEvent(splitUserInput[1], myList);
-            } else if (splitUserInput[0].equals("delete")) {
-                removeTask(splitUserInput[1], myList);
-            }else {
-                System.out.println("What the helly do you mean? Please try again");
+            if (splitUserInput.length == 1) {
+                splitUserInput = new String[]{userInput, ""};
             }
+            printHorizontalLine();
+            //Used enums to parse command instead of switch case
+            Command.fromString(splitUserInput[0]).execute(splitUserInput[1], myList);
             printHorizontalLine();
             userInput = myObj.nextLine();
         }
@@ -55,7 +113,7 @@ public class Lebron {
         System.out.println();
     }
 
-    public static void displayList(List<Task> ls) {
+    public static void displayList(String helly, List<Task> ls) {
         if (ls.isEmpty()) {
             System.out.println("List is Empty");
         } else {
@@ -83,17 +141,29 @@ public class Lebron {
         }
     }
 
-    public static void markTask(String helly, List<Task> ls, boolean toComplete) {
+    public static void markTask(String helly, List<Task> ls) {
         try {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx++;
                 System.out.println("Task " + tmpnum + " does not exist!");
-            } else if (toComplete){
+            } else {
                 Task curTask = ls.get(idx);
                 curTask.markAsCompleted();
                 System.out.println("I've just marked this as done my G");
                 System.out.println(curTask);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please input a valid integer after mark ");
+        }
+    }
+
+    public static void unmarkTask(String helly, List<Task> ls) {
+        try {
+            int idx = Integer.parseInt(helly) - 1;
+            if (ls.size() <= idx || idx < 0) {
+                int tmpnum = idx + 1;
+                System.out.println("Task " + tmpnum + " does not exist!");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.unmarkAsCompleted();
@@ -101,7 +171,7 @@ public class Lebron {
                 System.out.println(curTask);
             }
         } catch (NumberFormatException e) {
-            System.out.println("Please input a valid integer after mark ");
+            System.out.println("Please input a valid integer after unmark ");
         }
     }
 
