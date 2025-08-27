@@ -1,5 +1,5 @@
-deadline bio homework /by 2359
-event game workshop /from tdy /to tmr
+deadline bio homework /by 2025-09-21
+event game workshop /from 2025-09-21 /to 2025-09-22
 todo meet family
 mark 1
 list
@@ -9,10 +9,13 @@ unmark 1
 list
 mark 3
 list
+deadline chem hw /by 2025-12-25
 deadline do homework
 event what the helly /from deez
 bruh yeet smelly
 delete 1
+due
+due 2025-10-01
 list
 delete 5
 list
