@@ -10,8 +10,12 @@ public class Parser {
     public Parser(List<Task> ls) {
         this.taskList = ls;
     }
-    public void parseUi(String command, String rest) {
-        Command.fromString(command).execute(rest, taskList);
+    public void parseUi(String userInput) {
+        String[] splitUserInput = userInput.split(" ", 2);
+        if (splitUserInput.length == 1) {
+            splitUserInput = new String[]{userInput, ""};
+        }
+        Command.fromString(splitUserInput[0]).execute(splitUserInput[1], taskList);
     }
 
     enum Command {

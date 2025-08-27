@@ -1,5 +1,13 @@
+import java.util.Scanner;
+
 public class Ui {
-    public Ui() {}
+    Scanner myObj;
+    static String welcomeMsg = "Wassup, I'm Lebron. What popping homie?";
+    static String exitMsg = "Im gonna bounce. See ya fam!";
+
+    public Ui() {
+        myObj = new Scanner(System.in);
+    }
 
     public  void printHorizontalLine() {
         int length = 50;
@@ -10,5 +18,19 @@ public class Ui {
         }
 
         System.out.println();
+    }
+
+    public void startUp() {
+        System.out.println(welcomeMsg);
+        printHorizontalLine();
+    }
+
+    public void exit() {
+        System.out.println(exitMsg);
+        printHorizontalLine();
+    }
+
+    public String getNextLine() {
+        return myObj.nextLine();
     }
 }
