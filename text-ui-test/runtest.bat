@@ -1,3 +1,5 @@
+@cd /d "%~dp0"
+
 @ECHO OFF
 
 REM create bin directory if it doesn't exist
