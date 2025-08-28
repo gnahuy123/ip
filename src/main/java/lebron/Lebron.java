@@ -51,7 +51,7 @@ public class Lebron {
         String userInput = ui.getNextLine();
         while (!userInput.equals("bye")) {
             ui.printHorizontalLine();
-            parser.parseUi(userInput);
+            ui.print(parser.parseUi(userInput));
             ui.printHorizontalLine();
             userInput = ui.getNextLine();
         }

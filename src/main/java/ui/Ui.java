@@ -22,6 +22,13 @@ public class Ui {
         System.out.println();
     }
 
+    /*
+    * Function that prints
+    * Ui have responsibility to print
+     */
+    public void print(String s) {
+        System.out.println(s);
+    }
     public void startUp() {
         System.out.println(welcomeMsg);
         printHorizontalLine();
