@@ -43,7 +43,7 @@ public class DeadlineTask extends Task {
     }
 
     @Override
-    public String toCSV() {
-        return "Deadline," + super.toCSV() + "," +  this.by + "\n";
+    public String toCsv() {
+        return "Deadline," + super.toCsv() + "," + this.by + "\n";
     }
 }

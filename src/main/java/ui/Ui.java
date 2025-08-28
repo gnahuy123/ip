@@ -3,15 +3,16 @@ package ui;
 import java.util.Scanner;
 
 public class Ui {
-    Scanner myObj;
-    static String welcomeMsg = "Wassup, I'm lebron.Lebron. What popping homie?";
-    static String exitMsg = "Im gonna bounce. See ya fam!";
+    private static final String welcomeMsg = "Wassup, I'm lebron.Lebron. What popping homie?";
+    private static final String exitMsg = "Im gonna bounce. See ya fam!";
+
+    private final Scanner myObj;
 
     public Ui() {
         myObj = new Scanner(System.in);
     }
 
-    public  void printHorizontalLine() {
+    public void printHorizontalLine() {
         int length = 50;
         char line = '-';
 
