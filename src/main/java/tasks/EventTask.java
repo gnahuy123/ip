@@ -40,10 +40,11 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " +
-                from.format(DateTimeFormatter.ofPattern("MMM d, uuuu")) +
-                " to: " +
-                to.format(DateTimeFormatter.ofPattern("MMM d, uuuu")) + ')';
+        return "[E]" + super.toString() + " (from: "
+                + from.format(DateTimeFormatter.ofPattern("MMM d, uuuu"))
+                + " to: "
+                + to.format(DateTimeFormatter.ofPattern("MMM d, uuuu"))
+                + ')';
     }
 
     @Override
@@ -52,8 +53,8 @@ public class EventTask extends Task {
     }
 
     @Override
-    public String toCSV() {
-        return "Event," + super.toCSV() + "," + this.from.toString() + "," + this.to.toString() + "\n";
+    public String toCsv() {
+        return "Event," + super.toCsv() + "," + this.from.toString() + "," + this.to.toString() + "\n";
     }
 
 }

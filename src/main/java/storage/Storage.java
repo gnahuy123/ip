@@ -39,7 +39,7 @@ public class Storage {
         // Having fileWriter in the argument ensures i dont have to call file close if there is a error
         try (FileWriter writer = new FileWriter(fileName, false)) {
             for (Task t: ls) {
-                writer.write(t.toCSV());
+                writer.write(t.toCsv());
             }
         } catch (IOException e) {
             System.out.println("Data file does not exist");
@@ -78,23 +78,23 @@ public class Storage {
         Task res;
         boolean isCompleted = Boolean.parseBoolean(cells[2]);
         switch (cells[0]) {
-            case "Todo" -> res = new ToDoTask(cells[1], isCompleted);
-            case "Deadline" -> res =
-                    cells.length == 4
-                            ? new DeadlineTask(
-                            cells[1],
-                            isCompleted,
-                            LocalDate.parse(cells[3]))
-                            : null;
-            case "Event" -> res =
-                    cells.length == 5
-                            ? new EventTask(
-                            cells[1],
-                            isCompleted,
-                            LocalDate.parse(cells[3]),
-                            LocalDate.parse(cells[4]))
-                            : null;
-            default -> res = null;
+        case "Todo" -> res = new ToDoTask(cells[1], isCompleted);
+        case "Deadline" -> res =
+                cells.length == 4
+                        ? new DeadlineTask(
+                        cells[1],
+                        isCompleted,
+                        LocalDate.parse(cells[3]))
+                        : null;
+        case "Event" -> res =
+                cells.length == 5
+                        ? new EventTask(
+                        cells[1],
+                        isCompleted,
+                        LocalDate.parse(cells[3]),
+                        LocalDate.parse(cells[4]))
+                        : null;
+        default -> res = null;
         }
         return res;
     }

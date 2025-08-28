@@ -83,7 +83,9 @@ public class Parser {
         },
 
         DUE("due") {
-            public String execute(String helly, List<Task> ls) { return getDueTasks(helly, ls ); }
+            public String execute(String helly, List<Task> ls) {
+                return getDueTasks(helly, ls );
+            }
         },
 
         UNKNOWN("unknown") {
@@ -98,7 +100,7 @@ public class Parser {
         * @param helly, argument that was followed by the command
         * @param myList, List<Task> that contains users tasks
          */
-        abstract public String execute(String helly, List<Task> myList);
+        abstract String execute(String helly, List<Task> myList);
 
         private final String keyword;
 
@@ -155,7 +157,7 @@ public class Parser {
         } else {
             StringBuilder res = new StringBuilder("Here are the tasks in your list: \n");
             for (int i = 1; i < ls.size() + 1; i++) {
-                Task curTask = ls.get(i-1);
+                Task curTask = ls.get(i - 1);
                 res.append(i).append(".").append(curTask.toString()).append('\n');
             }
             return res.toString();
@@ -169,9 +171,9 @@ public class Parser {
                 return "tasks.Task " + tmpnum + " does not exist!";
             } else {
                 Task curTask = ls.remove(idx);
-                return "I've Removed this task from the list " + '\n' +
-                    curTask + '\n' +
-                    "Now you have " + ls.size() + " items left in the list!";
+                return "I've Removed this task from the list " + '\n'
+                        + curTask + '\n'
+                        + "Now you have " + ls.size() + " items left in the list!";
             }
         } catch (NumberFormatException e) {
             return "Please input a valid integer after delete ";

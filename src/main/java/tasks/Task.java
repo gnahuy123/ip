@@ -4,7 +4,7 @@ import java.time.LocalDate;
 /**
 * Abstract class Task that is the superclass to other concrete tasks.
  */
-abstract public class Task {
+public abstract class Task {
     protected String name;
     protected boolean isCompleted;
 
@@ -58,7 +58,7 @@ abstract public class Task {
     *
     * @return csv from.
      */
-    public String toCSV() {
+    public String toCsv() {
         return name + "," + (isCompleted ? "true" : "false");
     }
 
