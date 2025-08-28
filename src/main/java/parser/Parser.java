@@ -83,7 +83,15 @@ public class Parser {
         },
 
         DUE("due") {
-            public String execute(String helly, List<Task> ls) { return getDueTasks(helly, ls ); }
+            public String execute(String helly, List<Task> ls) {
+                return getDueTasks(helly, ls );
+            }
+        },
+
+        FIND("find") {
+            public String execute(String helly, List<Task> ls) {
+                return findTask(helly, ls);
+            }
         },
 
         UNKNOWN("unknown") {
@@ -118,6 +126,26 @@ public class Parser {
             }
             return Command.UNKNOWN;
         }
+    }
+
+    private static String findTask(String helly, List<Task> ls) {
+        List<Task> tempLs = new ArrayList<>();
+        StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+        for (Task t: ls) {
+            if (t.getName().contains(helly)) {
+                tempLs.add(t);
+            }
+        }
+
+        if (tempLs.isEmpty()) {
+            return "No tasks match your search";
+        }
+
+        for (Task t: tempLs) {
+            sb.append(t.toString()).append('\n');
+        }
+
+        return sb.toString();
     }
 
     private static String getDueTasks(String helly, List<Task> ls) {
