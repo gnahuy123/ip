@@ -88,19 +88,25 @@ public class Parser {
             }
         },
 
+        FIND("find") {
+            public String execute(String helly, List<Task> ls) {
+                return findTask(helly, ls);
+            }
+        },
+
         UNKNOWN("unknown") {
             public String execute(String helly, List<Task> ls) {
                 return "What the helly do you mean, please try again";
             }
         };
 
-        /**
+        /*
         * Method that is responsible for printing responses
         *
         * @param helly, argument that was followed by the command
         * @param myList, List<Task> that contains users tasks
          */
-        abstract String execute(String helly, List<Task> myList);
+        abstract public String execute(String helly, List<Task> myList);
 
         private final String keyword;
 
@@ -120,6 +126,26 @@ public class Parser {
             }
             return Command.UNKNOWN;
         }
+    }
+
+    private static String findTask(String helly, List<Task> ls) {
+        List<Task> tempLs = new ArrayList<>();
+        StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+        for (Task t: ls) {
+            if (t.getName().contains(helly)) {
+                tempLs.add(t);
+            }
+        }
+
+        if (tempLs.isEmpty()) {
+            return "No tasks match your search";
+        }
+
+        for (Task t: tempLs) {
+            sb.append(t.toString()).append('\n');
+        }
+
+        return sb.toString();
     }
 
     private static String getDueTasks(String helly, List<Task> ls) {
@@ -157,7 +183,7 @@ public class Parser {
         } else {
             StringBuilder res = new StringBuilder("Here are the tasks in your list: \n");
             for (int i = 1; i < ls.size() + 1; i++) {
-                Task curTask = ls.get(i - 1);
+                Task curTask = ls.get(i-1);
                 res.append(i).append(".").append(curTask.toString()).append('\n');
             }
             return res.toString();
