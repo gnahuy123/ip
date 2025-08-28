@@ -1,3 +1,10 @@
+package parser;
+
+import tasks.DeadlineTask;
+import tasks.EventTask;
+import tasks.ToDoTask;
+import tasks.Task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -136,7 +143,7 @@ public class Parser {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1;
-                System.out.println("Task " + tmpnum + " does not exist!");
+                System.out.println("tasks.Task " + tmpnum + " does not exist!");
             } else {
                 Task curTask = ls.remove(idx);
                 System.out.println("I've Removed this task from the list ");
@@ -153,7 +160,7 @@ public class Parser {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx++;
-                System.out.println("Task " + tmpnum + " does not exist!");
+                System.out.println("tasks.Task " + tmpnum + " does not exist!");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.markAsCompleted();
@@ -170,7 +177,7 @@ public class Parser {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1;
-                System.out.println("Task " + tmpnum + " does not exist!");
+                System.out.println("tasks.Task " + tmpnum + " does not exist!");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.unmarkAsCompleted();
@@ -191,7 +198,7 @@ public class Parser {
     }
 
     public static void addDeadline(String s, List<Task> myList) {
-        System.out.println("Looks like you want to add a Task with Deadline");
+        System.out.println("Looks like you want to add a tasks.Task with Deadline");
         int idx = s.indexOf("/by");
         if (idx <= 0) {
             System.out.println("Deadline should have a format of deadline 'name' /by YYYY-MM-DD");
