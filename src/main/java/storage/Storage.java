@@ -54,25 +54,25 @@ public class Storage {
             File f = new File(fileName);
             boolean isNew = f.createNewFile();
             if (!isNew) {
-                //ensure file only contains ASCII characters
-                Scanner scanner = new Scanner(f, java.nio.charset.StandardCharsets.UTF_8);
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    Task t = parseTask(line);
-                    if (t != null) {
-                        ls.add(t);
-                    } else {
-                        System.out.println("file corrupted");
+                // Ensure you close the scanner so testcases can run
+                try (Scanner scanner = new Scanner(f, java.nio.charset.StandardCharsets.UTF_8)) {
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        Task t = parseTask(line);
+                        if (t != null) {
+                            ls.add(t);
+                        } else {
+                            System.out.println("file corrupted");
+                        }
                     }
                 }
-
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static Task parseTask(String s) {
+    protected static Task parseTask(String s) {
         //format name, isCompleted
         String[] cells = s.split(",", -1);
         Task res;

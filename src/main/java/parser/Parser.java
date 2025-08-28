@@ -110,7 +110,7 @@ public class Parser {
             return keyword.equalsIgnoreCase(input);
         }
 
-        private static Command fromString(String input) {
+        protected static Command fromString(String input) {
             for (Command cmd: values()) {
                 if (cmd.matches(input)) {
                     return cmd;
@@ -228,7 +228,7 @@ public class Parser {
 
     private static String addDeadline(String s, List<Task> myList) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Looks like you want to add a tasks.Task with Deadline\n");
+        sb.append("Looks like you want to add a task with deadline\n");
         int idx = s.indexOf("/by");
         if (idx <= 0) {
             sb.append("Deadline should have a format of deadline 'name' /by YYYY-MM-DD\n");

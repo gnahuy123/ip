@@ -46,6 +46,13 @@ abstract public class Task {
         this.isCompleted = false;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
     /*
     * Converts Task into CSV form.
     *
