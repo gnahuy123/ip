@@ -12,7 +12,7 @@ import tasks.EventTask;
 import tasks.Task;
 import tasks.ToDoTask;
 
-/*
+/**
 * Class responsible for hard-disk storage of tasks
 *
  */
@@ -21,7 +21,7 @@ public class Storage {
     private final List<Task> ls;
     private final String fileName;
 
-    /*
+    /**
     * Constructor for Storage class
     *
     * @param ls, List<Task> that contains users task
@@ -32,7 +32,7 @@ public class Storage {
         this.fileName = fileName;
     }
 
-    /*
+    /**
     * Method used after execution of main program to store tasks back in hard drive
      */
     public void storeTasks() {
@@ -46,7 +46,7 @@ public class Storage {
         }
     }
 
-    /*
+    /**
     * Method that loads tasks from hard disk to Task List
      */
     public void loadTasksFromStorage() {

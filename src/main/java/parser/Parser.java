@@ -10,14 +10,14 @@ import java.time.format.DateTimeParseException;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
+/**
 * Class that handles parsing of commands
 *
  */
 public class Parser {
 
     private final List<Task> taskList;
-    /*
+    /**
     * Constructor for Parser
     *
     * @param ls the List<Task> that will contain the tasks
@@ -25,7 +25,7 @@ public class Parser {
     public Parser(List<Task> ls) {
         this.taskList = ls;
     }
-    /*
+    /**
     * Method that takes String and splits it into command and argument
     * It then passes the argument to the respective command
     *
@@ -92,7 +92,7 @@ public class Parser {
             }
         };
 
-        /*
+        /**
         * Method that is responsible for printing responses
         *
         * @param helly, argument that was followed by the command

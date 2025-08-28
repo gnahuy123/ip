@@ -36,6 +36,7 @@ application {
 shadowJar {
     archiveBaseName = "lebron"
     archiveClassifier = null
+    archiveFileName = "lebron.jar"
 }
 
 run {

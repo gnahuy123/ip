@@ -3,7 +3,7 @@ package tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/*
+/**
 * Event Task that has a start time and end time.
  */
 public class EventTask extends Task {
@@ -11,7 +11,7 @@ public class EventTask extends Task {
     protected LocalDate from;
     protected LocalDate to;
 
-    /*
+    /**
     * Constructor that creates EventTask.
     *
     * @param name/description of task.
@@ -24,7 +24,7 @@ public class EventTask extends Task {
         this.to = to;
     }
 
-    /*
+    /**
      * Constructor that creates EventTask while allowing created of marked tasks.
      *
      * @param name/description of task.

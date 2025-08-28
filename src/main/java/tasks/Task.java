@@ -1,14 +1,14 @@
 package tasks;
 
 import java.time.LocalDate;
-/*
+/**
 * Abstract class Task that is the superclass to other concrete tasks.
  */
 abstract public class Task {
     protected String name;
     protected boolean isCompleted;
 
-    /*
+    /**
     * Constructor for Task with.
     *
     * @param name description or name of task.
@@ -19,7 +19,7 @@ abstract public class Task {
         this.isCompleted = isCompleted;
     }
 
-    /*
+    /**
      * Constructor for Task.
      *
      * @param name description or name of task.
@@ -29,7 +29,7 @@ abstract public class Task {
         this.isCompleted = false;
     }
 
-    /*
+    /**
     * Method that returns when the Task is due.
     *
     * @return Due Date in LocalDate type.
@@ -53,7 +53,7 @@ abstract public class Task {
     public boolean isCompleted() {
         return isCompleted;
     }
-    /*
+    /**
     * Converts Task into CSV form.
     *
     * @return csv from.

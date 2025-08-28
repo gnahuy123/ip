@@ -1,7 +1,9 @@
 package ui;
 
 import java.util.Scanner;
-
+/**
+ * Class that handles User Interaction in Lebron
+*/
 public class Ui {
     Scanner myObj;
     static String welcomeMsg = "Wassup, I'm lebron.Lebron. What popping homie?";
@@ -22,7 +24,7 @@ public class Ui {
         System.out.println();
     }
 
-    /*
+    /**
     * Function that prints
     * Ui have responsibility to print
      */
