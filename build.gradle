@@ -1,11 +1,13 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 repositories {
     mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
@@ -28,14 +30,19 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("lebron.Lebron")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "lebron"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
+}
+
+checkstyle {
+    toolVersion = '11.0.0'
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 }

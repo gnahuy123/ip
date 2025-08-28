@@ -3,17 +3,35 @@ package tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/*
+* Event Task that has a start time and end time.
+ */
 public class EventTask extends Task {
 
     protected LocalDate from;
     protected LocalDate to;
 
+    /*
+    * Constructor that creates EventTask.
+    *
+    * @param name/description of task.
+    * @param from start date.
+    * @param to end date.
+     */
     public EventTask(String name, LocalDate from, LocalDate to) {
         super(name);
         this.from = from;
         this.to = to;
     }
 
+    /*
+     * Constructor that creates EventTask while allowing created of marked tasks.
+     *
+     * @param name/description of task.
+     * @param isCompleted completion status of task.
+     * @param from start date.
+     * @param to end date.
+     */
     public EventTask(String name, boolean isCompleted, LocalDate from, LocalDate to) {
         super(name, isCompleted);
         this.from = from;

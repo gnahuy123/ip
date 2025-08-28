@@ -2,21 +2,35 @@ package parser;
 
 import tasks.DeadlineTask;
 import tasks.EventTask;
-import tasks.ToDoTask;
 import tasks.Task;
+import tasks.ToDoTask;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+* Class that handles parsing of commands
+*
+ */
 public class Parser {
 
-    List<Task> taskList;
-
+    private final List<Task> taskList;
+    /*
+    * Constructor for Parser
+    *
+    * @param ls the List<Task> that will contain the tasks
+     */
     public Parser(List<Task> ls) {
         this.taskList = ls;
     }
+    /*
+    * Method that takes String and splits it into command and argument
+    * It then passes the argument to the respective command
+    *
+    * @param userInput String that user inputs
+     */
     public void parseUi(String userInput) {
         String[] splitUserInput = userInput.split(" ", 2);
         if (splitUserInput.length == 1) {
@@ -77,6 +91,13 @@ public class Parser {
                 System.out.println("What the helly do you mean, please try again");
             }
         };
+
+        /*
+        * Method that is responsible for printing responses
+        *
+        * @param helly, argument that was followed by the command
+        * @param myList, List<Task> that contains users tasks
+         */
         abstract public void execute(String helly, List<Task> myList);
 
         private final String keyword;
@@ -85,11 +106,11 @@ public class Parser {
             this.keyword = keyword;
         }
 
-        public boolean matches(String input) {
+        private boolean matches(String input) {
             return keyword.equalsIgnoreCase(input);
         }
 
-        public static Command fromString(String input) {
+        private static Command fromString(String input) {
             for (Command cmd: values()) {
                 if (cmd.matches(input)) {
                     return cmd;
@@ -99,7 +120,7 @@ public class Parser {
         }
     }
 
-    public static void getDueTasks(String helly, List<Task> ls) {
+    private static void getDueTasks(String helly, List<Task> ls) {
         try {
             LocalDate by;
             if (helly.isEmpty()) {
@@ -127,7 +148,7 @@ public class Parser {
             System.out.println("Please enter a value date YYYY-MM-DD");
         }
     }
-    public static void displayList(String helly, List<Task> ls) {
+    private static void displayList(String helly, List<Task> ls) {
         if (ls.isEmpty()) {
             System.out.println("List is Empty");
         } else {
@@ -138,7 +159,7 @@ public class Parser {
             }
         }
     }
-    public static void removeTask(String helly, List<Task> ls) {
+    private static void removeTask(String helly, List<Task> ls) {
         try {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
@@ -155,7 +176,7 @@ public class Parser {
         }
     }
 
-    public static void markTask(String helly, List<Task> ls) {
+    private static void markTask(String helly, List<Task> ls) {
         try {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
@@ -172,7 +193,7 @@ public class Parser {
         }
     }
 
-    public static void unmarkTask(String helly, List<Task> ls) {
+    private static void unmarkTask(String helly, List<Task> ls) {
         try {
             int idx = Integer.parseInt(helly) - 1;
             if (ls.size() <= idx || idx < 0) {
@@ -189,7 +210,7 @@ public class Parser {
         }
     }
 
-    public static void addTodo(String s, List<Task> myList) {
+    private static void addTodo(String s, List<Task> myList) {
         System.out.println("No Problem G, I got you");
         Task newTask = new ToDoTask(s);
         myList.add(newTask);
@@ -197,7 +218,7 @@ public class Parser {
         System.out.println("Now you have " + myList.size() + " tasks in the list");
     }
 
-    public static void addDeadline(String s, List<Task> myList) {
+    private static void addDeadline(String s, List<Task> myList) {
         System.out.println("Looks like you want to add a tasks.Task with Deadline");
         int idx = s.indexOf("/by");
         if (idx <= 0) {
@@ -216,7 +237,7 @@ public class Parser {
         }
     }
 
-    public static void addEvent(String s, List<Task> myList) {
+    private static void addEvent(String s, List<Task> myList) {
         System.out.println("Hmm an event interesting");
         int idx0 = s.indexOf("/from");
         int idx1 = s.indexOf("/to");

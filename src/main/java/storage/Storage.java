@@ -1,10 +1,5 @@
 package storage;
 
-import tasks.DeadlineTask;
-import tasks.EventTask;
-import tasks.ToDoTask;
-import tasks.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,15 +7,34 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+import tasks.DeadlineTask;
+import tasks.EventTask;
+import tasks.Task;
+import tasks.ToDoTask;
+
+/*
+* Class responsible for hard-disk storage of tasks
+*
+ */
 public class Storage {
 
     private final List<Task> ls;
     private final String fileName;
 
+    /*
+    * Constructor for Storage class
+    *
+    * @param ls, List<Task> that contains users task
+    * @param fileName name of csv file that stores tasks
+     */
     public Storage(List<Task> ls, String fileName) {
         this.ls = ls;
         this.fileName = fileName;
     }
+
+    /*
+    * Method used after execution of main program to store tasks back in hard drive
+     */
     public void storeTasks() {
         // Having fileWriter in the argument ensures i dont have to call file close if there is a error
         try (FileWriter writer = new FileWriter(fileName, false)) {
@@ -32,6 +46,9 @@ public class Storage {
         }
     }
 
+    /*
+    * Method that loads tasks from hard disk to Task List
+     */
     public void loadTasksFromStorage() {
         try {
             File f = new File(fileName);
@@ -55,7 +72,7 @@ public class Storage {
         }
     }
 
-    public static Task parseTask(String s) {
+    private static Task parseTask(String s) {
         //format name, isCompleted
         String[] cells = s.split(",", -1);
         Task res;

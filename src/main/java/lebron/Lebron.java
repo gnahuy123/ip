@@ -2,11 +2,16 @@ package lebron;
 
 import parser.Parser;
 import storage.Storage;
-import ui.Ui;
 import tasks.Task;
+import ui.Ui;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main class for chatbot
+ *
+ */
 public class Lebron {
 
     private final Ui ui;
@@ -14,6 +19,13 @@ public class Lebron {
     private final Parser parser;
     private final Storage storage;
 
+    /**
+     * Constructor for Lebron chatbot.
+     * Initializes UI, task list, parser, and storage components.
+     * Loads existing tasks from storage file.
+     *
+     * @param fileName the name of the file to store/load tasks from
+     */
     public Lebron(String fileName) {
         ui = new Ui();
         myList = new ArrayList<>();
@@ -22,11 +34,16 @@ public class Lebron {
         storage.loadTasksFromStorage();
     }
 
+    /**
+     * Main method to start the chatbot application.
+     *
+     * @param main command line arguments (not used)
+     */
     public static void main(String[] main) {
         new Lebron("./data/userData.csv").run();
     }
 
-    public void run() {
+    private void run() {
 
         //print welcome message
         ui.startUp();
@@ -42,6 +59,6 @@ public class Lebron {
 
         //print exit message
         ui.exit();
-        storage.storeTasks();}
+        storage.storeTasks();
+    }
 }
-
