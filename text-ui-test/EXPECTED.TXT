@@ -1,7 +1,7 @@
-Wassup, I'm Lebron. What popping homie?
+Wassup, I'm lebron.Lebron. What popping homie?
 --------------------------------------------------
 --------------------------------------------------
-Looks like you want to add a Task with Deadline
+Looks like you want to add a tasks.Task with Deadline
 [D][ ] bio homework (by: Sep 21, 2025)
 Done bro
 --------------------------------------------------
@@ -56,12 +56,12 @@ Here are the tasks in your list:
 3.[T][X] meet family
 --------------------------------------------------
 --------------------------------------------------
-Looks like you want to add a Task with Deadline
+Looks like you want to add a tasks.Task with Deadline
 [D][ ] chem hw (by: Dec 25, 2025)
 Done bro
 --------------------------------------------------
 --------------------------------------------------
-Looks like you want to add a Task with Deadline
+Looks like you want to add a tasks.Task with Deadline
 Deadline should have a format of deadline 'name' /by YYYY-MM-DD
 --------------------------------------------------
 --------------------------------------------------
@@ -90,7 +90,7 @@ Here are the tasks in your list:
 3.[D][ ] chem hw (by: Dec 25, 2025)
 --------------------------------------------------
 --------------------------------------------------
-Task 5 does not exist!
+tasks.Task 5 does not exist!
 --------------------------------------------------
 --------------------------------------------------
 Here are the tasks in your list:

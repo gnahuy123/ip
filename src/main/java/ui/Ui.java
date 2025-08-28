@@ -1,8 +1,10 @@
+package ui;
+
 import java.util.Scanner;
 
 public class Ui {
     Scanner myObj;
-    static String welcomeMsg = "Wassup, I'm Lebron. What popping homie?";
+    static String welcomeMsg = "Wassup, I'm lebron.Lebron. What popping homie?";
     static String exitMsg = "Im gonna bounce. See ya fam!";
 
     public Ui() {

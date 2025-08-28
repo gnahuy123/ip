@@ -1,11 +1,11 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+package lebron;
+
+import parser.Parser;
+import storage.Storage;
+import ui.Ui;
+import tasks.Task;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Lebron {
 
@@ -14,7 +14,6 @@ public class Lebron {
     private final Parser parser;
     private final Storage storage;
 
-    //TODO move fileName out
     public Lebron(String fileName) {
         ui = new Ui();
         myList = new ArrayList<>();
@@ -43,6 +42,6 @@ public class Lebron {
 
         //print exit message
         ui.exit();
-        storage.storeTasks();
-    }
+        storage.storeTasks();}
 }
+
