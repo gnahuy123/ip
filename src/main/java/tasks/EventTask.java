@@ -14,7 +14,7 @@ public class EventTask extends Task {
     /**
     * Constructor that creates EventTask.
     *
-    * @param name/description of task.
+    * @param name description of task.
     * @param from start date.
     * @param to end date.
      */
@@ -27,7 +27,7 @@ public class EventTask extends Task {
     /**
      * Constructor that creates EventTask while allowing created of marked tasks.
      *
-     * @param name/description of task.
+     * @param name description of task.
      * @param isCompleted completion status of task.
      * @param from start date.
      * @param to end date.

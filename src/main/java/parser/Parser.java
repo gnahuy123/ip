@@ -1,15 +1,16 @@
 package parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import tasks.DeadlineTask;
 import tasks.EventTask;
 import tasks.Task;
 import tasks.ToDoTask;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
-import java.util.ArrayList;
-import java.util.List;
 /**
 * Class that handles parsing of commands
 *
@@ -20,7 +21,7 @@ public class Parser {
     /**
     * Constructor for Parser
     *
-    * @param ls the List<Task> that will contain the tasks
+    * @param ls the {@code List<Task>} that will contain the tasks
      */
     public Parser(List<Task> ls) {
         this.taskList = ls;
@@ -84,7 +85,7 @@ public class Parser {
 
         DUE("due") {
             public String execute(String helly, List<Task> ls) {
-                return getDueTasks(helly, ls );
+                return getDueTasks(helly, ls);
             }
         },
 
@@ -100,19 +101,18 @@ public class Parser {
             }
         };
 
-        /*
-        * Method that is responsible for printing responses
-        *
-        * @param helly, argument that was followed by the command
-        * @param myList, List<Task> that contains users tasks
-         */
-        abstract public String execute(String helly, List<Task> myList);
-
         private final String keyword;
 
         Command(String keyword) {
             this.keyword = keyword;
         }
+        /**
+        * Method that is responsible for printing responses
+        *
+        * @param helly argument that was followed by the command
+        * @param myList {@code List<Task>} that contains users tasks
+         */
+        public abstract String execute(String helly, List<Task> myList);
 
         private boolean matches(String input) {
             return keyword.equalsIgnoreCase(input);
@@ -183,7 +183,7 @@ public class Parser {
         } else {
             StringBuilder res = new StringBuilder("Here are the tasks in your list: \n");
             for (int i = 1; i < ls.size() + 1; i++) {
-                Task curTask = ls.get(i-1);
+                Task curTask = ls.get(i - 1);
                 res.append(i).append(".").append(curTask.toString()).append('\n');
             }
             return res.toString();

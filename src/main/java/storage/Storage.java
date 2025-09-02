@@ -24,7 +24,7 @@ public class Storage {
     /**
     * Constructor for Storage class
     *
-    * @param ls, List<Task> that contains users task
+    * @param ls {@code List<Task>} that contains users task
     * @param fileName name of csv file that stores tasks
      */
     public Storage(List<Task> ls, String fileName) {

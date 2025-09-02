@@ -1,12 +1,13 @@
 package lebron;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import parser.Parser;
 import storage.Storage;
 import tasks.Task;
 import ui.Ui;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Main class for chatbot

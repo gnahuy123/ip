@@ -44,6 +44,6 @@ run {
 }
 
 checkstyle {
-    toolVersion = '11.0.0'
+    toolVersion = '11.0.1'
     configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 }

@@ -1,11 +1,11 @@
 package tasks;
 
-/*
+/**
 * Most basic task that just has a name
  */
 public class ToDoTask extends Task {
 
-    /*
+    /**
     * Construction of task.
     *
     * @param name name/description.
@@ -14,7 +14,7 @@ public class ToDoTask extends Task {
         super(name);
     }
 
-    /*
+    /**
      * Construction of task but with ability of make marked tasks
      *
      * @param name name/description.

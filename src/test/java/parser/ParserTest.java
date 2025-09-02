@@ -1,18 +1,20 @@
 package parser;
 
-import org.junit.jupiter.api.Test;
-import tasks.Task;
-import tasks.ToDoTask;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import tasks.Task;
+import tasks.ToDoTask;
+
 
 public class ParserTest {
     @Test
-    public void parseUi_singleArg_2ndEmptyString() {
+    public void parseUi_singleArg_secondEmptyString() {
         Parser p = new Parser(new ArrayList<Task>());
         assertEquals(
                 p.parseUi("list"),

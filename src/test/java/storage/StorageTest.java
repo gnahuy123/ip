@@ -1,11 +1,8 @@
 package storage;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import tasks.DeadlineTask;
-import tasks.EventTask;
-import tasks.Task;
-import tasks.ToDoTask;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,9 +12,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import tasks.DeadlineTask;
+import tasks.EventTask;
+import tasks.Task;
+import tasks.ToDoTask;
+
+
 
 public class StorageTest {
 
@@ -106,5 +109,4 @@ public class StorageTest {
         assertEquals("Event task", taskList.get(2).getName());
         assertTrue(taskList.get(2).isCompleted());
     }
-
 }

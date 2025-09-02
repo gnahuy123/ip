@@ -13,7 +13,9 @@ public class Ui {
     public Ui() {
         myObj = new Scanner(System.in);
     }
-
+    /**
+     * Prints line for aesthetic purposes
+     */
     public void printHorizontalLine() {
         int length = 50;
         char line = '-';
@@ -32,16 +34,25 @@ public class Ui {
     public void print(String s) {
         System.out.println(s);
     }
+
+    /**
+     * First method called when lebron starts up
+     */
     public void startUp() {
         System.out.println(welcomeMsg);
         printHorizontalLine();
     }
 
+    /**
+     * Method called before exiting lebron
+     */
     public void exit() {
         System.out.println(exitMsg);
         printHorizontalLine();
     }
-
+    /**
+     * Used to get userInput
+     */
     public String getNextLine() {
         return myObj.nextLine();
     }
