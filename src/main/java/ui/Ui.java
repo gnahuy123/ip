@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Class that handles User Interaction in Lebron
 */
 public class Ui {
-    private static final String welcomeMsg = "Wassup, I'm lebron.Lebron. What popping homie?";
+    private static final String welcomeMsg = "Wassup, I'm Lebron. What popping homie?";
     private static final String exitMsg = "Im gonna bounce. See ya fam!";
 
     private final Scanner myObj;

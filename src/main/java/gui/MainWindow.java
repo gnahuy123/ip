@@ -13,6 +13,7 @@ import lebron.Lebron;
  * Controller for the main GUI.
  */
 public class MainWindow extends AnchorPane {
+    private static final String welcomeMsg = "Wassup, I'm Lebron. What popping homie?";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -21,12 +22,9 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Lebron lebron;
-
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private final Image lebronImage = new Image(this.getClass().getResourceAsStream("/images/Lebron.jpg"));
-
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -50,5 +48,15 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, lebronImage)
         );
         userInput.clear();
+    }
+
+    /**
+     * Called for Lebron to send message when app starts up
+     */
+    @FXML
+    public void startUp() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcomeMsg, lebronImage)
+        );
     }
 }

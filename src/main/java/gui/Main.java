@@ -25,6 +25,7 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(lebron);
             stage.show();
+            fxmlLoader.<MainWindow>getController().startUp();
         } catch (IOException e) {
             e.printStackTrace();
         }
