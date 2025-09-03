@@ -3,6 +3,8 @@ package lebron;
 import java.util.ArrayList;
 import java.util.List;
 
+import gui.Main;
+import javafx.application.Application;
 import parser.Parser;
 import storage.Storage;
 import tasks.Task;
@@ -41,7 +43,8 @@ public class Lebron {
      * @param main command line arguments (not used)
      */
     public static void main(String[] main) {
-        new Lebron("./data/userData.csv").run();
+        Application.launch(Main.class, main);
+        //new Lebron("./data/userData.csv").run();
     }
 
     private void run() {
@@ -61,5 +64,14 @@ public class Lebron {
         //print exit message
         ui.exit();
         storage.storeTasks();
+    }
+
+    /**
+     * Used for GUI to get response everytime it sense userInput
+     * @param userInput text input by user
+     * @return response of lebron chatbot
+     */
+    public String getResponse(String userInput) {
+        return parser.parseUi(userInput);
     }
 }
