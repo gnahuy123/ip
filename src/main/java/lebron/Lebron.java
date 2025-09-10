@@ -12,7 +12,7 @@ import ui.Ui;
 
 
 /**
- * Main class for chatbot
+ * Main class for lebron chatbot
  *
  */
 public class Lebron {
