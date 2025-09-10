@@ -43,62 +43,62 @@ public class Parser {
 
     enum Command {
         LIST("list") {
-            public String execute(String helly, List<Task> ls) {
-                return displayList(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return displayList(taskInfo, ls);
             }
         },
 
         MARK("mark") {
-            public String execute(String helly, List<Task> ls) {
-                return markTask(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return markTask(taskInfo, ls);
             }
         },
 
         UNMARK("unmark") {
-            public String execute(String helly, List<Task> ls) {
-                return unmarkTask(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return unmarkTask(taskInfo, ls);
             }
         },
 
         TODO("todo") {
-            public String execute(String helly, List<Task> ls) {
-                return addTodo(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return addTodo(taskInfo, ls);
             }
         },
 
         DEADLINE("deadline") {
-            public String execute(String helly, List<Task> ls) {
-                return addDeadline(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return addDeadline(taskInfo, ls);
             }
         },
 
         EVENT("event") {
-            public String execute(String helly, List<Task> ls) {
-                return addEvent(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return addEvent(taskInfo, ls);
             }
         },
 
         DELETE("delete") {
-            public String execute(String helly, List<Task> ls) {
-                return removeTask(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return removeTask(taskInfo, ls);
             }
         },
 
         DUE("due") {
-            public String execute(String helly, List<Task> ls) {
-                return getDueTasks(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return getDueTasks(taskInfo, ls);
             }
         },
 
         FIND("find") {
-            public String execute(String helly, List<Task> ls) {
-                return findTask(helly, ls);
+            public String execute(String taskInfo, List<Task> ls) {
+                return findTask(taskInfo, ls);
             }
         },
 
         UNKNOWN("unknown") {
-            public String execute(String helly, List<Task> ls) {
-                return "What the helly do you mean, please try again";
+            public String execute(String taskInfo, List<Task> ls) {
+                return "What the taskInfo do you mean, please try again";
             }
         };
 
@@ -110,17 +110,17 @@ public class Parser {
         /**
         * Method that is responsible for printing responses
         *
-        * @param helly argument that was followed by the command
+        * @param taskInfo argument that was followed by the command
         * @param myList {@code List<Task>} that contains users tasks
          */
-        public abstract String execute(String helly, List<Task> myList);
+        public abstract String execute(String taskInfo, List<Task> myList);
 
         private boolean matches(String input) {
             return keyword.equalsIgnoreCase(input);
         }
 
         protected static Command fromString(String input) {
-            assert input.split(" ").length > 1 : "Input string must be one word only";
+            assert input.split(" ").length == 1 : "Input string must be one word only";
             for (Command cmd: values()) {
                 if (cmd.matches(input)) {
                     return cmd;
@@ -130,11 +130,11 @@ public class Parser {
         }
     }
 
-    private static String findTask(String helly, List<Task> ls) {
+    private static String findTask(String taskInfo, List<Task> ls) {
         List<Task> tempLs = new ArrayList<>();
         StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
         for (Task t: ls) {
-            if (t.getName().contains(helly)) {
+            if (t.getName().contains(taskInfo)) {
                 tempLs.add(t);
             }
         }
@@ -150,14 +150,14 @@ public class Parser {
         return sb.toString();
     }
 
-    private static String getDueTasks(String helly, List<Task> ls) {
+    private static String getDueTasks(String taskInfo, List<Task> ls) {
         StringBuilder res = new StringBuilder();
         try {
             LocalDate by;
-            if (helly.isEmpty()) {
+            if (taskInfo.isEmpty()) {
                 by = LocalDate.now();
             } else {
-                by = LocalDate.parse(helly);
+                by = LocalDate.parse(taskInfo);
             }
             res.append("The following are tasks that are due by ").append(by).append('\n');
             List<Task> dueTasks = new ArrayList<>();
@@ -179,7 +179,7 @@ public class Parser {
             return "Please enter a value date YYYY-MM-DD";
         }
     }
-    private static String displayList(String helly, List<Task> ls) {
+    private static String displayList(String taskInfo, List<Task> ls) {
         if (ls.isEmpty()) {
             return "List is Empty";
         } else {
@@ -191,9 +191,9 @@ public class Parser {
             return res.toString();
         }
     }
-    private static String removeTask(String helly, List<Task> ls) {
+    private static String removeTask(String taskInfo, List<Task> ls) {
         try {
-            int idx = Integer.parseInt(helly) - 1;
+            int idx = Integer.parseInt(taskInfo) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1;
                 return "tasks.Task " + tmpnum + " does not exist!";
@@ -208,13 +208,13 @@ public class Parser {
         }
     }
 
-    private static String markTask(String helly, List<Task> ls) {
+    private static String markTask(String taskInfo, List<Task> ls) {
         StringBuilder sb = new StringBuilder();
         try {
-            int idx = Integer.parseInt(helly) - 1;
+            int idx = Integer.parseInt(taskInfo) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1; // corrected from idx++
-                sb.append("tasks.Task ").append(tmpnum).append(" does not exist!\n");
+                sb.append("Task ").append(tmpnum).append(" does not exist!\n");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.markAsCompleted();
@@ -227,13 +227,13 @@ public class Parser {
         return sb.toString();
     }
 
-    private static String unmarkTask(String helly, List<Task> ls) {
+    private static String unmarkTask(String taskInfo, List<Task> ls) {
         StringBuilder sb = new StringBuilder();
         try {
-            int idx = Integer.parseInt(helly) - 1;
+            int idx = Integer.parseInt(taskInfo) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1;
-                sb.append("tasks.Task ").append(tmpnum).append(" does not exist!\n");
+                sb.append("Task ").append(tmpnum).append(" does not exist!\n");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.unmarkAsCompleted();

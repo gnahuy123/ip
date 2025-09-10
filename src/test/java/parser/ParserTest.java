@@ -50,14 +50,14 @@ public class ParserTest {
     public void markCommand_invalidIndex_returnsErrorMessage() {
         List<Task> taskList = new ArrayList<>();
         String result = Parser.Command.MARK.execute("5", taskList);
-        assertEquals("tasks.Task 5 does not exist!\n", result);
+        assertEquals("Task 5 does not exist!\n", result);
     }
 
     @Test
     public void unmarkCommand_invalidIndex_returnsErrorMessage() {
         List<Task> taskList = new ArrayList<>();
         String result = Parser.Command.UNMARK.execute("5", taskList);
-        assertEquals("tasks.Task 5 does not exist!\n", result);
+        assertEquals("Task 5 does not exist!\n", result);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class ParserTest {
     public void unknownCommand_returnsErrorMessage() {
         List<Task> taskList = new ArrayList<>();
         String result = Parser.Command.UNKNOWN.execute("", taskList);
-        assertEquals("What the helly do you mean, please try again", result);
+        assertEquals("What the taskInfo do you mean, please try again", result);
     }
 
     @Test
