@@ -24,6 +24,7 @@ public class Parser {
     * @param ls the {@code List<Task>} that will contain the tasks
      */
     public Parser(List<Task> ls) {
+        assert ls != null : "taskList cannot be null!";
         this.taskList = ls;
     }
     /**
@@ -119,6 +120,7 @@ public class Parser {
         }
 
         protected static Command fromString(String input) {
+            assert input.split(" ").length > 1 : "Input string must be one word only";
             for (Command cmd: values()) {
                 if (cmd.matches(input)) {
                     return cmd;

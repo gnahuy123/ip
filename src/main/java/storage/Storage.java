@@ -73,6 +73,7 @@ public class Storage {
     }
 
     protected static Task parseTask(String s) {
+        assert s != null : "Line in hard drive should not be empty. ";
         //format name, isCompleted
         String[] cells = s.split(",", -1);
         Task res;
