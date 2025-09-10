@@ -53,18 +53,24 @@ public class Storage {
         try {
             File f = new File(fileName);
             boolean isNew = f.createNewFile();
-            if (!isNew) {
-                // Ensure you close the scanner so testcases can run
-                try (Scanner scanner = new Scanner(f, java.nio.charset.StandardCharsets.UTF_8)) {
-                    while (scanner.hasNextLine()) {
-                        String line = scanner.nextLine();
-                        Task t = parseTask(line);
-                        if (t != null) {
-                            ls.add(t);
-                        } else {
-                            System.out.println("file corrupted");
-                        }
-                    }
+            if (isNew) {
+                return;
+            }
+            // Ensure you close the scanner so testcases can run
+            scanForTasks(f);
+        } catch (IOException e) {
+            System.out.println("Error Loading tasks from hard drive");
+        }
+    }
+    private void scanForTasks(File f) {
+        try (Scanner scanner = new Scanner(f, java.nio.charset.StandardCharsets.UTF_8)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Task t = parseTask(line);
+                if (t != null) {
+                    ls.add(t);
+                } else {
+                    System.out.println("file corrupted");
                 }
             }
         } catch (IOException e) {
