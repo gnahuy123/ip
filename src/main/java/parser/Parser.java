@@ -96,6 +96,12 @@ public class Parser {
             }
         },
 
+        HELP("help") {
+            public String execute(String taskInfo, List<Task> ls) {
+                return getHelp();
+            }
+        },
+
         UNKNOWN("unknown") {
             public String execute(String taskInfo, List<Task> ls) {
                 return "What the taskInfo do you mean, please try again";
@@ -128,6 +134,45 @@ public class Parser {
             }
             return Command.UNKNOWN;
         }
+    }
+    private static String getHelp() {
+        return """
+                Hi, I am Lebron James, a NBA superstar who will supervise your tasks!
+                Here are some of my commands that you can try!
+                
+                Add a Todo Task(no time associated)
+                -----------
+                Todo <task name>
+                
+                Add a Deadline Task
+                -----------
+                Deadline <task name> /by <YYYY-MM-DD>
+                
+                Add a Event Task
+                -----------
+                Event <task name> /from <YYYY-MM-DD> /to <YYYY-MM-DD>
+                
+                List out all tasks
+                -----------
+                List
+                
+                Delete Tasks
+                ------------
+                Delete <Task no.>
+                
+                Mark/Unmark Tasks as completed/not completed
+                ------------
+                unmark/mark <Task no.>
+                
+                Find tasks
+                ------------
+                find <Search input>
+                
+                Filter Tasks by due date
+                ------------
+                due <YYYY-MM-DD>
+                
+                """;
     }
 
     private static String findTask(String taskInfo, List<Task> ls) {
