@@ -1,5 +1,10 @@
 package parser;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -136,45 +141,23 @@ public class Parser {
         }
     }
     private static String getHelp() {
-        return """
-                Hi, I am Lebron James, a NBA superstar who will supervise your tasks!
-                Here are some of my commands that you can try!
-                
-                Add a Todo Task(no time associated)
-                -----------
-                Todo <task name>
-                
-                Add a Deadline Task
-                -----------
-                Deadline <task name> /by <YYYY-MM-DD>
-                
-                Add a Event Task
-                -----------
-                Event <task name> /from <YYYY-MM-DD> /to <YYYY-MM-DD>
-                
-                List out all tasks
-                -----------
-                List
-                
-                Delete Tasks
-                ------------
-                Delete <Task no.>
-                
-                Mark/Unmark Tasks as completed/not completed
-                ------------
-                unmark/mark <Task no.>
-                
-                Find tasks
-                ------------
-                find <Search input>
-                
-                Filter Tasks by due date
-                ------------
-                due <YYYY-MM-DD>
-                
-                """;
-    }
+        String helpContent = "";
+        String resourcePath = "help/help.txt";
 
+        try (InputStream inputStream = Parser.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            if (inputStream == null) {
+                throw new IOException("Help file not found" + resourcePath);
+            }
+
+            Path tempFile = Files.createTempFile("help", "txt");
+            Files.copy(inputStream, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            helpContent = Files.readString(tempFile);
+            Files.delete(tempFile);
+            return helpContent;
+        } catch (IOException e) {
+            return "Error getting help file";
+        }
+    }
     private static String findTask(String taskInfo, List<Task> ls) {
         List<Task> tempLs = new ArrayList<>();
         StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
