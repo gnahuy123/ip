@@ -109,7 +109,7 @@ public class Parser {
 
         UNKNOWN("unknown") {
             public String execute(String taskInfo, List<Task> ls) {
-                return "What the taskInfo do you mean, please try again";
+                return "What the helly do you mean, please try again";
             }
         };
 
@@ -153,14 +153,15 @@ public class Parser {
             Files.copy(inputStream, tempFile, StandardCopyOption.REPLACE_EXISTING);
             helpContent = Files.readString(tempFile);
             Files.delete(tempFile);
-            return helpContent;
+            return "King James says: \n" + helpContent;
         } catch (IOException e) {
-            return "Error getting help file";
+            return "Nothing easy, even help files miss sometimes!";
         }
     }
+
     private static String findTask(String taskInfo, List<Task> ls) {
         List<Task> tempLs = new ArrayList<>();
-        StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+        StringBuilder sb = new StringBuilder("King James found these matching tasks:\n");
         for (Task t: ls) {
             if (t.getName().contains(taskInfo)) {
                 tempLs.add(t);
@@ -168,7 +169,7 @@ public class Parser {
         }
 
         if (tempLs.isEmpty()) {
-            return "No tasks match your search";
+            return "No buckets made with that search! Try again.";
         }
 
         for (Task t: tempLs) {
@@ -187,7 +188,7 @@ public class Parser {
             } else {
                 by = LocalDate.parse(taskInfo);
             }
-            res.append("The following are tasks that are due by ").append(by).append('\n');
+            res.append("Tasks due by ").append(by).append(" (King's schedule):\n");
             List<Task> dueTasks = new ArrayList<>();
 
             for (Task t: ls) {
@@ -204,14 +205,15 @@ public class Parser {
             }
             return res.toString();
         } catch (DateTimeParseException e) {
-            return "Please enter a value date YYYY-MM-DD";
+            return "King James needs dates in YYYY-MM-DD format!";
         }
     }
+
     private static String displayList(String taskInfo, List<Task> ls) {
         if (ls.isEmpty()) {
-            return "List is Empty";
+            return "The King's court is empty!";
         } else {
-            StringBuilder res = new StringBuilder("Here are the tasks in your list: \n");
+            StringBuilder res = new StringBuilder("Behold the King's tasks: \n");
             for (int i = 1; i < ls.size() + 1; i++) {
                 Task curTask = ls.get(i - 1);
                 res.append(i).append(".").append(curTask.toString()).append('\n');
@@ -219,20 +221,21 @@ public class Parser {
             return res.toString();
         }
     }
+
     private static String removeTask(String taskInfo, List<Task> ls) {
         try {
             int idx = Integer.parseInt(taskInfo) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1;
-                return "tasks.Task " + tmpnum + " does not exist!";
+                return "Task " + tmpnum + " doesn't exist in the King's court!";
             } else {
                 Task curTask = ls.remove(idx);
-                return "I've Removed this task from the list " + '\n'
+                return "King James has removed this task: \n"
                         + curTask + '\n'
-                        + "Now you have " + ls.size() + " items left in the list!";
+                        + "Now you have " + ls.size() + " tasks left!";
             }
         } catch (NumberFormatException e) {
-            return "Please input a valid integer after delete ";
+            return "The King needs a valid number after delete!";
         }
     }
 
@@ -241,16 +244,16 @@ public class Parser {
         try {
             int idx = Integer.parseInt(taskInfo) - 1;
             if (ls.size() <= idx || idx < 0) {
-                int tmpnum = idx + 1; // corrected from idx++
-                sb.append("Task ").append(tmpnum).append(" does not exist!\n");
+                int tmpnum = idx + 1;
+                sb.append("Task ").append(tmpnum).append(" doesn't exist in the King's court!\n");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.markAsCompleted();
-                sb.append("I've just marked this as done my G\n");
+                sb.append("Crown this task! Marked as done:\n");
                 sb.append(curTask).append("\n");
             }
         } catch (NumberFormatException e) {
-            sb.append("Please input a valid integer after mark \n");
+            sb.append("The King needs a valid number after mark!\n");
         }
         return sb.toString();
     }
@@ -261,22 +264,22 @@ public class Parser {
             int idx = Integer.parseInt(taskInfo) - 1;
             if (ls.size() <= idx || idx < 0) {
                 int tmpnum = idx + 1;
-                sb.append("Task ").append(tmpnum).append(" does not exist!\n");
+                sb.append("Task ").append(tmpnum).append(" doesn't exist in the King's court!\n");
             } else {
                 Task curTask = ls.get(idx);
                 curTask.unmarkAsCompleted();
-                sb.append("This task is officially undone\n");
+                sb.append("This task is back in the game! Unmarked:\n");
                 sb.append(curTask).append("\n");
             }
         } catch (NumberFormatException e) {
-            sb.append("Please input a valid integer after unmark \n");
+            sb.append("The King needs a valid number after unmark!\n");
         }
         return sb.toString();
     }
 
     private static String addTodo(String s, List<Task> myList) {
         StringBuilder sb = new StringBuilder();
-        sb.append("No Problem G, I got you\n");
+        sb.append("King James has added a new task:\n");
         Task newTask = new ToDoTask(s);
         myList.add(newTask);
         sb.append(newTask).append("\n");
@@ -286,10 +289,10 @@ public class Parser {
 
     private static String addDeadline(String s, List<Task> myList) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Looks like you want to add a task with deadline\n");
+        sb.append("King James is setting a deadline!\n");
         int idx = s.indexOf("/by");
         if (idx <= 0) {
-            sb.append("Deadline should have a format of deadline 'name' /by YYYY-MM-DD\n");
+            sb.append("The King demands: deadline 'name' /by YYYY-MM-DD\n");
             return sb.toString();
         }
         String name = s.substring(0, idx).trim();
@@ -298,20 +301,20 @@ public class Parser {
             Task newTask = new DeadlineTask(name, by);
             myList.add(newTask);
             sb.append(newTask).append("\n");
-            sb.append("Done bro\n");
+            sb.append("Nothing easy! Deadline set!\n");
         } catch (DateTimeParseException e) {
-            sb.append("Deadline should have a format of deadline 'name' /by YYYY-MM-DD\n");
+            sb.append("The King demands: deadline 'name' /by YYYY-MM-DD\n");
         }
         return sb.toString();
     }
 
     private static String addEvent(String s, List<Task> myList) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Hmm an event interesting\n");
+        sb.append("King James is adding an event!\n");
         int idx0 = s.indexOf("/from");
         int idx1 = s.indexOf("/to");
         if (idx0 <= 0 || idx1 <= 0) {
-            sb.append("Event should have a format of event 'name' /from YYYY-MM-DD /to YYYY-MM-DD\n");
+            sb.append("The King demands: event 'name' /from YYYY-MM-DD /to YYYY-MM-DD\n");
             return sb.toString();
         }
         try {
@@ -321,9 +324,9 @@ public class Parser {
             Task newTask = new EventTask(name, from, to);
             myList.add(newTask);
             sb.append(newTask).append("\n");
-            sb.append("Added the task for you\n");
+            sb.append("Witness! Event added!\n");
         } catch (DateTimeParseException e) {
-            sb.append("Event should have a format of event 'name' /from YYYY-MM-DD /to YYYY-MM-DD\n");
+            sb.append("The King demands: event 'name' /from YYYY-MM-DD /to YYYY-MM-DD\n");
         }
         return sb.toString();
     }

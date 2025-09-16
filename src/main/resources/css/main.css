@@ -1,0 +1,229 @@
+/* LeBron James Basketball Theme CSS */
+
+/* Root styling with basketball court colors */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #1a1a1a, #2d1810);
+    -fx-font-family: "Arial Black", "Impact", sans-serif;
+}
+
+/* Main window styling */
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right,
+        #8B4513 0%,     /* Saddle Brown (basketball leather) */
+        #654321 30%,    /* Dark Brown */
+        #1a1a1a 70%,    /* Almost Black */
+        #000000 100%);  /* Pure Black */
+    -fx-background-image: url("/images/basketball-pattern.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* Scroll pane styling */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: rgba(0, 0, 0, 0.3);
+    -fx-border-color: #FFD700; /* Gold border like Lakers */
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: rgba(255, 215, 0, 0.2); /* Gold transparent */
+    -fx-border-color: #FFD700;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #FFD700, #FFA500);
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+/* Dialog container */
+.dialog-container {
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-background-color: transparent;
+}
+
+/* Dialog boxes */
+.dialog-box {
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.3, 2, 2);
+}
+
+/* User dialog styling (right side) */
+.user-dialog {
+    -fx-background-color: linear-gradient(to right,
+        rgba(75, 0, 130, 0.8),    /* Indigo */
+        rgba(138, 43, 226, 0.8)); /* Blue Violet */
+    -fx-border-color: #9370DB; /* Medium Slate Blue */
+    -fx-border-width: 2px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+/* LeBron dialog styling (left side) */
+.lebron-dialog {
+    -fx-background-color: linear-gradient(to left,
+        rgba(255, 215, 0, 0.9),   /* Gold */
+        rgba(255, 140, 0, 0.8));  /* Dark Orange */
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Label styling inside dialogs */
+.dialog-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-text-alignment: justify;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 1, 1, 1, 1);
+}
+
+/* User text styling */
+.user-text {
+    -fx-text-fill: #E6E6FA; /* Lavender */
+}
+
+/* LeBron text styling */
+.lebron-text {
+    -fx-text-fill: #1a1a1a; /* Dark text on gold background */
+    -fx-font-weight: bolder;
+}
+
+/* Image view styling */
+.profile-image {
+    -fx-fit-width: 50px;
+    -fx-fit-height: 50px;
+    -fx-preserve-ratio: true;
+    -fx-smooth: true;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 3, 0.5, 1, 1);
+}
+
+/* Input field styling */
+.text-field {
+    -fx-background-color: linear-gradient(to bottom, #2F2F2F, #1C1C1C);
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px;
+    -fx-prompt-text-fill: rgba(255, 215, 0, 0.6);
+}
+
+.text-field:focused {
+    -fx-border-color: #FFA500; /* Orange when focused */
+    -fx-background-color: linear-gradient(to bottom, #3F3F3F, #2C2C2C);
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.8), 5, 0.7, 0, 0);
+}
+
+/* Send button styling */
+.button {
+    -fx-background-color: linear-gradient(to bottom,
+        #FFD700 0%,     /* Gold */
+        #FFA500 50%,    /* Orange */
+        #FF8C00 100%);  /* Dark Orange */
+    -fx-text-fill: #1a1a1a;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #B8860B; /* Dark Goldenrod */
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 3, 0.5, 1, 1);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom,
+        #FFFF00 0%,     /* Bright Yellow */
+        #FFD700 50%,    /* Gold */
+        #FFA500 100%);  /* Orange */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.6), 5, 0.7, 0, 0);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom,
+        #DAA520 0%,     /* Goldenrod */
+        #B8860B 50%,    /* Dark Goldenrod */
+        #CD853F 100%);  /* Peru */
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Custom styling for basketball elements */
+.basketball-accent {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 60%,
+        #D2691E,        /* Chocolate */
+        #8B4513);       /* Saddle Brown */
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+}
+
+/* Crown emoji or King styling */
+.king-accent {
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 2, 1, 1, 1);
+}
+
+/* Miami Heat colors alternative */
+.heat-theme {
+    -fx-background-color: linear-gradient(to right,
+        rgba(152, 0, 46, 0.8),    /* Heat Red */
+        rgba(249, 160, 27, 0.8)); /* Heat Orange */
+}
+
+/* Lakers colors alternative */
+.lakers-theme {
+    -fx-background-color: linear-gradient(to right,
+        rgba(85, 37, 130, 0.8),   /* Lakers Purple */
+        rgba(255, 215, 0, 0.8));  /* Lakers Gold */
+}
+
+/* Cleveland Cavaliers colors alternative */
+.cavs-theme {
+    -fx-background-color: linear-gradient(to right,
+        rgba(134, 0, 56, 0.8),    /* Cavalier Wine */
+        rgba(255, 215, 0, 0.8));  /* Cavalier Gold */
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from { -fx-opacity: 0; -fx-translate-y: 20px; }
+    to { -fx-opacity: 1; -fx-translate-y: 0; }
+}
+
+@keyframes bounce {
+    0%, 100% { -fx-scale-y: 1; }
+    50% { -fx-scale-y: 1.1; }
+}
+
+/* Apply animations */
+.dialog-box {
+    -fx-animation: fadeIn 0.3s ease-out;
+}
+
+.button:hover {
+    -fx-animation: bounce 0.5s ease-in-out;
+}

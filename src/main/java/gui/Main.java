@@ -22,7 +22,9 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
             stage.setScene(scene);
+            stage.setTitle("LeBron Chat");
             fxmlLoader.<MainWindow>getController().setDuke(lebron);
             stage.show();
             fxmlLoader.<MainWindow>getController().startUp();
