@@ -31,7 +31,7 @@ A basketball-themed task management chatbot inspired by LeBron James, designed t
 ### Prerequisites
 - Java 11 or higher
 - JavaFX SDK
-- Maven (optional, for dependency management)
+- Gradle (optional, for dependency management)
 
 ### Installation
 
@@ -44,21 +44,6 @@ cd lebron-chatbot
 2. **Set up JavaFX**
    - Download JavaFX SDK from [OpenJFX website](https://openjfx.io/)
    - Add JavaFX to your module path
-
-3. **Create required directories**
-```bash
-mkdir -p data
-mkdir -p src/main/resources/css
-mkdir -p src/main/resources/images
-mkdir -p src/main/resources/view
-mkdir -p src/main/resources/help
-```
-
-4. **Add required files**
-   - Place `main.css` in `src/main/resources/css/`
-   - Add user and LeBron images to `src/main/resources/images/`
-   - Create FXML files in `src/main/resources/view/`
-   - Add help documentation in `src/main/resources/help/help.txt`
 
 ### Running the Application
 
