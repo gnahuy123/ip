@@ -79,8 +79,8 @@ public class ParserTest {
         List<Task> taskList = new ArrayList<>();
         String result = Parser.Command.DEADLINE.execute("test task", taskList);
         assertEquals(
-                "King James is setting a deadline!\n" +
-                        "The King demands: deadline 'name' /by YYYY-MM-DD\n",
+                "King James is setting a deadline!\n"
+                        + "The King demands: deadline 'name' /by YYYY-MM-DD\n",
                 result);
     }
 
@@ -89,8 +89,8 @@ public class ParserTest {
         List<Task> taskList = new ArrayList<>();
         String result = Parser.Command.EVENT.execute("test event", taskList);
         assertEquals(
-                "King James is adding an event!\n" +
-                        "The King demands: event 'name' /from YYYY-MM-DD /to YYYY-MM-DD\n",
+                "King James is adding an event!\n"
+                        + "The King demands: event 'name' /from YYYY-MM-DD /to YYYY-MM-DD\n",
                 result);
     }
 

@@ -23,7 +23,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
     private Lebron lebron;
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private final Image lebronImage = new Image(this.getClass().getResourceAsStream("/images/Lebron.jpg"));
     @FXML
     public void initialize() {
