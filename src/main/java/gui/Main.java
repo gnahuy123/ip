@@ -1,6 +1,8 @@
 package gui;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,10 +16,21 @@ import lebron.Lebron;
  */
 public class Main extends Application {
 
-    private final Lebron lebron = new Lebron("./data/userData.csv");
+    private Lebron lebron;
 
     @Override
     public void start(Stage stage) {
+
+        String jarDir = new File(System.getProperty("user.dir")).getAbsolutePath();
+        File dataDir = new File(jarDir, "data");
+        if (!dataDir.exists()) {
+            dataDir.mkdirs();
+        }
+        String dataFile = new File(dataDir, "userData.csv").getAbsolutePath();
+
+
+        this.lebron = new Lebron(dataFile);
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
@@ -28,6 +41,10 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setDuke(lebron);
             stage.show();
             fxmlLoader.<MainWindow>getController().startUp();
+            stage.setOnCloseRequest(event -> {
+                lebron.getStorage().storeTasks();
+            });
+
         } catch (IOException e) {
             e.printStackTrace();
         }

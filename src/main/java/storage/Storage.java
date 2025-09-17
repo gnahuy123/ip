@@ -36,15 +36,21 @@ public class Storage {
     * Method used after execution of main program to store tasks back in hard drive
      */
     public void storeTasks() {
-        // Having fileWriter in the argument ensures i dont have to call file close if there is a error
-        try (FileWriter writer = new FileWriter(fileName, false)) {
-            for (Task t: ls) {
+        File f = new File(fileName);
+        File parentDir = f.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
+        }
+
+        try (FileWriter writer = new FileWriter(f, false)) {
+            for (Task t : ls) {
                 writer.write(t.toCsv());
             }
         } catch (IOException e) {
-            System.out.println("Data file does not exist");
+            e.printStackTrace(); // show full error for debugging
         }
     }
+
 
     /**
     * Method that loads tasks from hard disk to Task List

@@ -74,4 +74,8 @@ public class Lebron {
     public String getResponse(String userInput) {
         return parser.parseUi(userInput);
     }
+
+    public Storage getStorage() {
+        return storage;
+    }
 }
